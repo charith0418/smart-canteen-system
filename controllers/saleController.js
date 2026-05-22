@@ -1,5 +1,5 @@
 const Sale = require('../models/Sale');
-const saleService = ('../models/saleService');
+const saleService = require('../services/saleService');
 
 const createSale = async (req, res) => {
     try {
