@@ -9,9 +9,9 @@ const getItems = async (req, res) => {
     }
 };
 
-const creatItem = async (req, res) => {
+const createItem = async (req, res) => {
     try {
-        const { name, prince, category, imageUrl } = req.body;
+        const { name, price, category, imageUrl } = req.body;
         const item = new Item ({ name, price, category, imageUrl });
         const createdItem = await item.save();
         res.status(201).json(createdItem);
@@ -22,6 +22,6 @@ const creatItem = async (req, res) => {
 };
 
 module.exports = {
-    getItem,
-    createdItem
+    getItems,
+    createItem
 };

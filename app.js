@@ -1,11 +1,11 @@
 const express = require('express');
-const core = require('core');
+const cors = require('cors');
 const itemRoutes = require('./routes/itemRoutes');
 const saleRoutes = require('./routes/saleRoutes');
 
 const app = express();
 
-app.use(core());
+app.use(cors());
 app.use(express.json());
 
 app.use('/api/items', itemRoutes);
