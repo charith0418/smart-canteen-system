@@ -12,7 +12,7 @@ const connectDB = async () => {//when use this asyns JavaScript handles them asy
 
         console.log(err);
 
-    }git branch
+    }
 
 };
 
