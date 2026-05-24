@@ -4,7 +4,7 @@ const connectDB = async () => {//when use this asyns JavaScript handles them asy
 
     try {
 
-        await mongoose.connect("mongodb://localhost:27017/canteenDB");
+        await mongoose.connect(process.env.MONGO_URI );
 
         console.log("MongoDB connected");
 
@@ -16,4 +16,4 @@ const connectDB = async () => {//when use this asyns JavaScript handles them asy
 
 };
 
-module.exports = connectDB;//export this function so other files can use it
+module.exports = connectDB;//export this function so other files can use it helllo
