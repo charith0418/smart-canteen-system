@@ -12,7 +12,10 @@ const CartItem = ({ item }) => {
         </h3>
 
         <p className="text-sm text-gray-500 mt-1">
-          Rs. {item.price} × {item.qty}
+          Rs. {item.price} × {item.qty} 
+          <span className='font-semibold text-black ml-1'>
+            :fv Rs. {item.price * item.qty}
+          </span>
         </p>
       </div>
 

@@ -22,7 +22,7 @@ const Cart = () => {
         </p>
 
 
-        <button className="w-full mt-2 bg-green-600 text-white py-2 rounded font-semibold">
+        <button className="w-full mt-2 bg-green-600 text-white py-2 rounded font-semibold" href=''>
           Complete Sale
         </button>
 
