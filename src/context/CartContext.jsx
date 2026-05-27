@@ -49,9 +49,36 @@ export const CartProvider = ({ children }) => {
     0
   );
 
+  const completeSale = () => {
+  if (cart.length === 0) return;
+
+  const sale = {
+    id: Date.now(),
+    items: cart,
+    total: subtotal,
+    date: new Date().toLocaleString(),
+  };
+
+  // get old sales
+  const existingSales =
+    JSON.parse(localStorage.getItem("sales")) || [];
+
+  // add new sale
+  existingSales.push(sale);
+
+  // save again
+  localStorage.setItem(
+    "sales",
+    JSON.stringify(existingSales)
+  );
+  alert("Sale Completed Successfully");
+  // clear cart
+  setCart([]);
+};
+
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, increase, decrease, clearCart, subtotal }}
+      value={{ cart, addToCart, increase, decrease, clearCart, subtotal, completeSale }}
     >
       {children}
     </CartContext.Provider>

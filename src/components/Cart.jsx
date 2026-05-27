@@ -3,7 +3,7 @@ import CartItem from "./CartItem";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 const Cart = () => {
-  const { cart, subtotal, clearCart } = useCart();
+  const { cart, subtotal, clearCart,completeSale} = useCart();
 
   return (
     <div className="bg-white p-4 shadow rounded-xl h-full flex flex-col">
@@ -22,13 +22,13 @@ const Cart = () => {
         </p>
 
 
-        <button className="w-full mt-2 bg-green-600 text-white py-2 rounded font-semibold" href=''>
+        <button onClick={completeSale}className="w-full mt-2 bg-green-600 text-white py-2 rounded font-semibold cursor-pointer" >
           Complete Sale
         </button>
 
         <button
           onClick={clearCart}
-          className="w-full mt-3 bg-white-500 text-black py-2 rounded font-semibold shadow flex items-center justify-center gap-2 "
+          className="w-full mt-3 bg-white-500 text-black py-2 rounded font-semibold shadow flex items-center justify-center gap-2 cursor-pointer"
         >
           <RiDeleteBin6Line className='text-lg'/>
           <span>Clear</span>

@@ -1,6 +1,7 @@
 import React from 'react'
 import Logo_png from '../assets/logo-2.png'
 import { FaHome, FaShoppingCart, FaChartBar } from "react-icons/fa";
+import {Link} from "react-router-dom";
 
 const Sidebar = () => {
     return (
@@ -19,18 +20,22 @@ const Sidebar = () => {
            
 
             <ul className='space-y-5'>
+               <Link to="/">
                 <li className="flex items-center gap-3 cursor-pointer">
                     <FaHome />
                     <span>Dashboard</span>
                 </li>
-                <li className="flex items-center gap-3 cursor-pointer">
+               </Link> <br/>
+                {/* <li className="flex items-center gap-3 cursor-pointer">
                     <FaShoppingCart />
                     <span>Sales</span>
-                </li>
+                </li> */}
+                <Link to ="/reports">
                 <li className="flex items-center gap-3 cursor-pointer">
                     <FaChartBar />
                     <span>Reports</span>
                 </li>
+                </Link>
 
             </ul>
 

@@ -1,9 +1,10 @@
 import React from 'react'
-import Hero_png from '../src/assets/hero.png'
-import Logo_png from '../src/assets/logo.png'
+import Hero_png from '../assets/hero.png'
+import Logo_png from '../assets/logo.png'
 
 import { HiLockClosed } from "react-icons/hi"
 import { FaUser } from "react-icons/fa"
+import {useNavigate} from "react-router-dom"
 
 function IconInput({ children, placeholder, type }) {
   return (
@@ -24,6 +25,16 @@ function IconInput({ children, placeholder, type }) {
 }
 
 const App = () => {
+
+  const navigate = useNavigate();
+  const handleLogin = () => {
+
+    localStorage.setItem("isLoggedIn", true);
+
+  navigate("/");
+
+  };
+
   return (
     <div className='flex justify-center items-center min-h-screen w-full bg-slate-100 p-5'>
 
@@ -116,7 +127,8 @@ const App = () => {
             </div>
 
             {/* BUTTON */}
-            <button className='bg-green-500 hover:bg-green-600 transition-all duration-300 text-white font-semibold py-3 w-full rounded-lg mt-6'>
+            <button
+            onClick={handleLogin} className='bg-green-500 hover:bg-green-600 transition-all duration-300 text-white font-semibold py-3 w-full rounded-lg mt-6 cursor-pointer'>
 
               Login
 
