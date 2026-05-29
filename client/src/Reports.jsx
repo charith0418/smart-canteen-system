@@ -106,7 +106,7 @@ const Reports = () => {
             </li>
 
             {/* Active Menu */}
-            <li className="flex items-center gap-3 p-3 bg-green-500 rounded-lg cursor-pointer">
+            <li className="flex items-center gap-3 p-3 hover:bg-gray-800 rounded-lg cursor-pointer">
               <FaChartBar />
               Reports
             </li>
