@@ -6,23 +6,23 @@ import { HiLockClosed } from "react-icons/hi"
 import { FaUser } from "react-icons/fa"
 import {useNavigate} from "react-router-dom"
 
-function IconInput({ children, placeholder, type }) {
-  return (
-    <div className='border border-gray-300 rounded-lg p-4 flex items-center gap-3 mt-4'>
+// function IconInput({ children, placeholder, type }) {
+//   return (
+//     <div className='border border-gray-300 rounded-lg p-4 flex items-center gap-3 mt-4'>
 
-      <span className='text-gray-500 text-lg'>
-        {children}
-      </span>
+//       <span className='text-gray-500 text-lg'>
+//         {children}
+//       </span>
 
-      <input
-        type={type}
-        placeholder={placeholder}
-        className='outline-none w-full text-gray-700'
-      />
+//       <input
+//         type={type}
+//         placeholder={placeholder}
+//         className='outline-none w-full text-gray-700'
+//       />
 
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
 
 const App = () => {
 
@@ -85,21 +85,36 @@ const App = () => {
 
             </div>
 
-            {/* USERNAME */}
-            <IconInput
-              placeholder='Username'
-              type='text'
-            >
-              <FaUser />
-            </IconInput>
+            <form className="items-center w-full flex flex-col gap-4 mt-6">
 
-            {/* PASSWORD */}
-            <IconInput
-              placeholder='Password'
-              type='password'
+            <div className="flex items-center border border-gray-300 rounded-lg px-4 py-3 w-120">
+              <MdOutlineMailOutline className="text-gray-500 text-xl" />
+
+              <input
+                type="text"
+                placeholder="Email"
+                className="w-full ml-3 outline-none bg-transparent"
+              />
+            </div>
+
+            <div className="flex items-center border border-gray-300 rounded-lg px-4 py-3 w-120">
+              <RiLockPasswordFill className="text-gray-500 text-xl" />
+
+              <input
+                type="password"
+                placeholder="Password"
+                className="w-full ml-3 outline-none bg-transparent"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="items-center bg-green-800 text-white py-3 rounded-lg font-semibold hover:bg-green-900 transition w-120"
             >
-              <HiLockClosed />
-            </IconInput>
+              Login
+            </button>
+
+          </form>
 
             {/* OPTIONS */}
             <div className='flex justify-between items-center mt-6'>
