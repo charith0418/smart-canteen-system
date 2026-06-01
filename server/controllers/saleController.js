@@ -23,15 +23,25 @@ const createSale = async (req, res) => {
     }
 };
 
-
 const getReports = async (req, res) => {
-    try{
-        const { range, data } = req.query;
-        const reportData = await saleService.generateReport(range, data);
-        res.json(reportData);
-    } catch (error) {
-        res.status(500).json ({ message: 'Error generating reports', error: error.message });
-    }
+  try {
+    const { range, date } = req.query;
+
+    const reportData = await saleService.generateReport(range, date);
+
+    res.json({
+      sales: [], // optional fallback
+      totalIncome: reportData.overview.totalSales,
+      overview: reportData.overview,
+      topSellingItems: reportData.topSellingItems,
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message: "Error generating reports",
+      error: error.message,
+    });
+  }
 };
 
 module.exports = {

@@ -4,8 +4,7 @@ const express = require('express');
 
 
     router.route('/').post(createSale);
-
-    router.route('/reports').get(getReports);
+    router.get("/reports", getReports);
 
     module.exports = router;
     
