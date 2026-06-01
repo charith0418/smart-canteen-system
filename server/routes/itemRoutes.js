@@ -2,7 +2,11 @@ const express = require('express');
 const router = express.Router();
 const { getItems, createItem } = require('../controllers/itemController');
 
-router.route('/').get(getItems).post(createItem);
+const upload = require('../middleware/uploadMiddleware');
+
+router.route('/')
+    .get(getItems)
+    .post(upload.single('image'), createItem);
 
 
 module.exports = router;
