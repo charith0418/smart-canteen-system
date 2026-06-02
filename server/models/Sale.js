@@ -1,42 +1,42 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const saleItemSchema = new mongoose.Schema({
-    item: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Item',
-        required: true
-    },
-    quantity: {
-        type: Number,
-        required: true,
-        min: 1
-    },
-    priceAtSale: {
-        type: Number,
-        required: true,
-    }
-}, {_id: false });
-
-
-const saleschema = new mongoose.Schema({
-    items: [saleItemSchema],
+const SaleSchema = new mongoose.Schema(
+  {
+    items: [
+      {
+        item: {
+          type: String, // Changed to String to dynamically accept both numeric IDs and ObjectIds
+          required: true,
+        },
+        quantity: {
+          type: Number,
+          required: true,
+          default: 1,
+        },
+        price: {
+          type: Number,
+          required: true,
+        },
+      },
+    ],
     subtotal: {
-        type:Number,
-        required: true
+      type: Number,
+      required: true,
     },
     discount: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0,
     },
     total: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
-    cashier: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-    }   
+    createdAt: {
+      type: Date,
+      default: Date.now, // Automatically saves the timestamp of the purchase
+    },
+  },
+  { timestamps: true }
+);
 
-}, { timestamps: true });
-
-module.exports = mongoose.model('Sale', saleschema);
+module.exports = mongoose.model("Sale", SaleSchema);
