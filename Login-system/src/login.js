@@ -34,18 +34,30 @@ function Login(){
                      <input
                         type=""
                         placeholder='🔑 Password'
-                        value={username}
+                        value={password}
                         onChange={(e)=> setPassword(e.target.value)}
                      />
 
                    </div>
+
                    <div className="remember-container">
                      <input type="checkbox" id="rememberMe"/>
                      <label htmlFor="rememberMe">Remember me</label>
 
-                     <       a href="#forgot" className="forgot-link">Forgot Password?</a>
+                      <a href="#forgot" className="forgot-link">Forgot Password?</a>
 
                    </div>
+
+                   <button type="submit" className="login-btn">
+                      Login
+                   </button>
+
+                   <div>
+                    <p>
+                        @ 2024 Smart Canteen Systems
+                    </p>
+                   </div>
+
                 </div>
             </div>
 

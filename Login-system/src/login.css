@@ -48,7 +48,7 @@
 }
 
 .remember-container{
-    dispay: flex;
+    display: flex;
     align-items: center;
     justify-content: flex-start;
     width: 70%;
@@ -69,4 +69,16 @@
 .forgot-link:hover{
     text-decoration: underline;
     color: #6c46f6;
+}
+
+.login-btn{
+    width: 70%;
+    padding: 14px;
+    background-color: rgba(8, 71, 50, 0.934);
+    color: #f0f0f0;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 30px;
+    margin-top: 20px;
+
 }
