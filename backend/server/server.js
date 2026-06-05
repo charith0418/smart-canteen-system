@@ -2,28 +2,20 @@ const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 const http = require('http');
 const express = require('express');
-const cors = require('cors'); // 🌟 1. Import the cors package
 const app = require('./app');
 const connectDB = require('./config/db');
 
+// Connect to MongoDB Database
 connectDB();
 
-// 🌟 2. Enable CORS so your Vercel frontend can access the API
-app.use(cors({
-  origin: [
-    "https://smart-canteen-system.vercel.app", // Your actual live Vercel URL
-    "http://localhost:5173"                    // Keeps local development working!
-  ],
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
-
+// Serve static images folder publicly
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
+// Configure port deployment values
 const PORT = process.env.PORT || 5000;
 const server = http.createServer(app);
 
+// Start the live server listener
 server.listen(PORT, () => {
   console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
 });
