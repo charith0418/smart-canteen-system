@@ -78,14 +78,14 @@ export const CartProvider = ({ children }) => {
       }));
 
       // Submit formatted payload to API
-      const response = await fetch(
-        "http://localhost:5000/api/sales",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: token && token.startsWith("Bearer ") ? token : `Bearer ${token}`,
-          },
+     const response = await fetch(
+    "https://smart-canteen-backend.onrender.com/api/sales", // 🌟 Your live Render URL here
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token && token.startsWith("Bearer ") ? token : `Bearer ${token}`,
+      },
           body: JSON.stringify({
             items: formattedItems,
             subtotal: subtotal,

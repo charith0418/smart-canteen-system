@@ -13,7 +13,7 @@ const Reports = () => {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/sales/reports");
+        const res = await fetch("https://smart-canteen-backend.onrender.com/api/sales/reports"); // 🌟 Your live Render URL here
         const data = await res.json();
 
         console.log("FRONTEND RECEIVED DATA FROM BACKEND:", data);
