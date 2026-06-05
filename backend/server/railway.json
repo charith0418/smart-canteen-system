@@ -1,9 +1,10 @@
 {
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
-    "builder": "NIXPACKS"
+    "builder": "NIXPACKS",
+    "srcDir": "backend/server"
   },
   "deploy": {
-    "startCommand": "node server.js"
+    "startCommand": "node backend/server/server.js"
   }
 }
