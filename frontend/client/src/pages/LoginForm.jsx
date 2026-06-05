@@ -29,7 +29,8 @@ const LoginForm = ({ setIsLoggedIn }) => {
     setLoading(true); 
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      // Swapped localhost for your live Railway production domain
+      const response = await fetch("https://pleasant-luck-production-5f23.up.railway.app/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userName, password }),
@@ -66,9 +67,9 @@ const LoginForm = ({ setIsLoggedIn }) => {
     }
 
     setModalLoading(true);
-
-    try {
-      const response = await fetch("http://localhost:5000/api/auth/reset-password", {
+try {
+      // Swapped localhost for your live Railway production domain
+      const response = await fetch("https://pleasant-luck-production-5f23.up.railway.app/api/auth/reset-password", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userName: resetUser, securityAnswer, newPassword }),
