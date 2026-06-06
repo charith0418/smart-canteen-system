@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo_png from '../assets/logo-2.png';
-import { FaHome, FaShoppingCart, FaChartBar } from "react-icons/fa";
+import { FaHome, FaChartBar } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
@@ -22,12 +22,15 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="w-64 h-screen bg-slate-900 border-r border-slate-800 text-slate-100 p-5 flex flex-col justify-between select-none">
+    /* 📱 MOBILE: fixed bottom bar (w-full h-16 bottom-0 left-0)
+      💻 PC MONITOR: vertical left sidebar (lg:w-64 lg:h-screen lg:relative lg:flex-col)
+    */
+    <div className="fixed bottom-0 left-0 z-50 flex h-16 w-full border-t border-slate-800 bg-slate-900 p-2 text-slate-100 select-none justify-around items-center lg:sticky lg:top-0 lg:left-0 lg:h-screen lg:w-64 lg:flex-col lg:justify-between lg:border-t-0 lg:border-r lg:p-5">
       
-      {/* Upper Content Box */}
-      <div>
-        {/* Branding Headers */}
-        <div className="flex items-center gap-3 px-2 py-1">
+      {/* Upper Content Box: Hidden on mobile branding, visible on PC */}
+      <div className="w-full lg:block">
+        {/* Branding Headers (Hidden on phone screens to save real estate) */}
+        <div className="hidden lg:flex items-center gap-3 px-2 py-1">
           <img
             src={Logo_png}
             alt="Logo"
@@ -43,21 +46,21 @@ const Sidebar = () => {
           </div>
         </div>
 
-        {/* Divider Line */}
-        <div className="h-px bg-slate-800 my-6 mx-2" />
+        {/* Divider Line (Hidden on phone screens) */}
+        <div className="hidden lg:block h-px bg-slate-800 my-6 mx-2" />
 
-        {/* Unordered Menu List Navigation */}
-        <nav>
-          <ul className="space-y-1.5">
+        {/* Navigation Wrapper: Flex row on mobile, space-y vertical list on PC */}
+        <nav className="w-full">
+          <ul className="flex w-full justify-around items-center gap-1 lg:flex-col lg:space-y-1.5 lg:justify-start">
             {menuItems.map((item) => {
               // Check if this menu path matches the current browser location string
               const isActive = location.pathname === item.path;
 
               return (
-                <li key={item.path}>
+                <li key={item.path} className="w-full flex-1 lg:flex-none">
                   <Link
                     to={item.path}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 group ${
+                    className={`flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-1 lg:gap-3 px-2 py-1.5 lg:px-4 lg:py-3 rounded-xl font-medium text-xs lg:text-sm transition-all duration-200 group ${
                       isActive
                         ? "bg-emerald-600 text-white shadow-md shadow-emerald-900/30"
                         : "text-slate-400 hover:bg-slate-800/60 hover:text-white"
@@ -70,7 +73,7 @@ const Sidebar = () => {
                       {item.icon}
                     </span>
                     
-                    <span>{item.label}</span>
+                    <span className="text-[10px] lg:text-sm tracking-wide">{item.label}</span>
                   </Link>
                 </li>
               );
@@ -79,8 +82,8 @@ const Sidebar = () => {
         </nav>
       </div>
 
-      {/* Optional Premium Bottom Meta-Signature block */}
-      <div className="px-3 py-2 rounded-xl bg-slate-800/40 border border-slate-800/60 text-center">
+      {/* Version footer badge (Hidden on mobile phones to maintain clean space) */}
+      <div className="hidden lg:block w-full px-3 py-2 rounded-xl bg-slate-800/40 border border-slate-800/60 text-center">
         <p className="text-[11px] text-slate-500 font-medium">Terminal v1.4.2</p>
       </div>
 
