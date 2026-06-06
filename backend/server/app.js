@@ -15,8 +15,8 @@ app.use(cors({
 
 app.use(express.json());
 
-// 2. Explicitly catch and return 200 OK for browser preflight OPTIONS checks (FIXED: '*' changed to '/*')
-app.options('/:any*', cors()); 
+// 2. REMOVED app.options() line entirely to prevent path-to-regexp v8 crash.
+// Global cors() middleware above handles pre-flights flawlessly on its own.
 
 // 3. Application Routes
 app.use('/api/auth', authRoutes);
