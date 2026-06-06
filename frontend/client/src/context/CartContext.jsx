@@ -77,15 +77,18 @@ export const CartProvider = ({ children }) => {
         priceAtSale: Number(item.price),     
       }));
 
-      // Submit formatted payload to API
-     const response = await fetch(
-    "https://smart-canteen-backend.onrender.com/api/sales", // 🌟 Your live Render URL here
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token && token.startsWith("Bearer ") ? token : `Bearer ${token}`,
-      },
+      // 1. Read your Vercel/Local environment variable dynamically
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+
+      // 2. Insert that variable directly into your fetch call
+      const response = await fetch(
+        `${API_BASE_URL}/api/sales`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token && token.startsWith("Bearer ") ? token : `Bearer ${token}`,
+          },
           body: JSON.stringify({
             items: formattedItems,
             subtotal: subtotal,
