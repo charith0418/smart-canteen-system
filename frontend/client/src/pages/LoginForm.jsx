@@ -6,6 +6,9 @@ import { MdOutlineMailOutline, MdHelpOutline } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
+// Read the URL dynamically from your Vercel/Local Environment configuration
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+
 const LoginForm = ({ setIsLoggedIn }) => {
   const [userName, setUsername] = useState(""); 
   const [password, setPassword] = useState(""); 
@@ -17,7 +20,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
   const [resetUser, setResetUser] = useState("");
   const [securityAnswer, setSecurityAnswer] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState(""); // ✅ New state track added
+  const [confirmPassword, setConfirmPassword] = useState(""); 
   const [modalMessage, setModalMessage] = useState({ text: "", isError: false });
   const [modalLoading, setModalLoading] = useState(false);
 
@@ -29,8 +32,8 @@ const LoginForm = ({ setIsLoggedIn }) => {
     setLoading(true); 
 
     try {
-      // Swapped localhost for your live Railway production domain
-      const response = await fetch("https://pleasant-luck-production-5f23.up.railway.app/api/auth/login", {
+      // Clean dynamic environment string assembly
+      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userName, password }),
@@ -47,7 +50,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
         setError(data.message || "Invalid credentials. Please try again.");
       }
     } catch (err) {
-      setError("Cannot reach backend server. Ensure it is running on port 5000.");
+      setError("Cannot reach backend server. Ensure it is running and accessible.");
     } finally {
       setLoading(false);
     }
@@ -67,9 +70,9 @@ const LoginForm = ({ setIsLoggedIn }) => {
     }
 
     setModalLoading(true);
-try {
-      // Swapped localhost for your live Railway production domain
-      const response = await fetch("https://pleasant-luck-production-5f23.up.railway.app/api/auth/reset-password", {
+    try {
+      // Clean dynamic environment string assembly
+      const response = await fetch(`${API_BASE_URL}/api/auth/reset-password`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userName: resetUser, securityAnswer, newPassword }),
@@ -84,7 +87,7 @@ try {
           setResetUser("");
           setSecurityAnswer("");
           setNewPassword("");
-          setConfirmPassword(""); // Clean state tracking
+          setConfirmPassword(""); 
           setModalMessage({ text: "", isError: false });
         }, 2200);
       } else {
