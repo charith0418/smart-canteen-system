@@ -2,17 +2,6 @@ const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 const http = require('http');
 const express = require('express');
-
-// --- PATH-TO-REGEXP V8 COMPLIANCE PATCH ---
-// This automatically catches and patches old '*' paths in Express before they crash your app!
-const router = require('express/lib/router/layer');
-const originalNew = router.prototype.constructor;
-router.prototype.constructor = function (path, options, fn) {
-  if (path === '*') path = '/*';
-  return originalNew.apply(this, [path, options, fn]);
-};
-// ------------------------------------------
-
 const app = require('./app');
 const connectDB = require('./config/db');
 
