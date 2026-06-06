@@ -13,7 +13,10 @@ const Reports = () => {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const res = await fetch("https://smart-canteen-backend.onrender.com/api/sales/reports"); // 🌟 Your live Render URL here
+        // 📑 Read your global Vercel/Railway environment variable link dynamically
+        const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+        
+        const res = await fetch(`${API_BASE_URL}/api/sales/reports`); 
         const data = await res.json();
 
         console.log("FRONTEND RECEIVED DATA FROM BACKEND:", data);
