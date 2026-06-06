@@ -15,8 +15,8 @@ app.use(cors({
 
 app.use(express.json());
 
-// 2. Explicitly catch and return 200 OK for browser preflight OPTIONS checks
-app.options('*', cors()); 
+// 2. Explicitly catch and return 200 OK for browser preflight OPTIONS checks (FIXED: '*' changed to '/*')
+app.options('/*', cors()); 
 
 // 3. Application Routes
 app.use('/api/auth', authRoutes);
